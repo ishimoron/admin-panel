@@ -1,6 +1,6 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
-import { Routes_E } from '../components/enums/Routes_E';
+import { Routes_E } from '../enums/Routes_E';
 
 export const Route = createFileRoute('/_auth')({
   beforeLoad: ({ context }) => {

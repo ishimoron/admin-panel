@@ -2,18 +2,19 @@ import { useNavigate, useRouter } from '@tanstack/react-router';
 import { useEffect } from 'react';
 
 import { useAuth } from '../Auth/auth';
-import { Routes_E } from '../enums/Routes_E';
+import Sidebar from '../Sidebar/Sidebar';
+import { useAuthCheck } from '../hooks/useAuthCheck';
+import styles from './style.module.scss';
 
 const Dashboard = () => {
   const auth = useAuth();
   const navigate = useNavigate();
   const router = useRouter();
+  const { isUserAuthenticated } = useAuthCheck();
 
   useEffect(() => {
-    if (!auth?.loading && !auth?.isAuthenticated) {
-      navigate({ to: Routes_E.HOME });
-    }
-  }, [auth?.loading, auth?.isAuthenticated]);
+    isUserAuthenticated();
+  }, []);
 
   if (auth?.loading || !auth?.isAuthenticated) {
     return;
@@ -28,7 +29,8 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
+    <div className={styles.dashboardContainer}>
+      <Sidebar />
       <div> Welcome: {auth.user?.username}!</div>
       <button onClick={logOut}>Logout</button>
     </div>

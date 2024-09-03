@@ -16,6 +16,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
 import { Route as AuthDashboardImport } from './routes/_auth.dashboard'
+import { Route as AuthCategoriesImport } from './routes/_auth.categories'
 
 // Create Virtual Routes
 
@@ -46,6 +47,11 @@ const IndexRoute = IndexImport.update({
 
 const AuthDashboardRoute = AuthDashboardImport.update({
   path: '/dashboard',
+  getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthCategoriesRoute = AuthCategoriesImport.update({
+  path: '/categories',
   getParentRoute: () => AuthRoute,
 } as any)
 
@@ -81,6 +87,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupLazyImport
       parentRoute: typeof rootRoute
     }
+    '/_auth/categories': {
+      id: '/_auth/categories'
+      path: '/categories'
+      fullPath: '/categories'
+      preLoaderRoute: typeof AuthCategoriesImport
+      parentRoute: typeof AuthImport
+    }
     '/_auth/dashboard': {
       id: '/_auth/dashboard'
       path: '/dashboard'
@@ -95,7 +108,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
-  AuthRoute: AuthRoute.addChildren({ AuthDashboardRoute }),
+  AuthRoute: AuthRoute.addChildren({ AuthCategoriesRoute, AuthDashboardRoute }),
   SigninLazyRoute,
   SignupLazyRoute,
 })
@@ -120,6 +133,7 @@ export const routeTree = rootRoute.addChildren({
     "/_auth": {
       "filePath": "_auth.tsx",
       "children": [
+        "/_auth/categories",
         "/_auth/dashboard"
       ]
     },
@@ -128,6 +142,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/signup": {
       "filePath": "signup.lazy.tsx"
+    },
+    "/_auth/categories": {
+      "filePath": "_auth.categories.tsx",
+      "parent": "/_auth"
     },
     "/_auth/dashboard": {
       "filePath": "_auth.dashboard.tsx",

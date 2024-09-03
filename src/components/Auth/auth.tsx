@@ -1,10 +1,10 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 
-import { apiLogin, apiRegister, apiVerifyToken } from '../../api/authApi';
+import { apiLogin, apiRegister, apiVerifyToken } from '../../api/auth.api';
 import { AuthUser, IAuthContext } from './Auth_I';
 
 const AuthContext = React.createContext<IAuthContext | undefined>(undefined);
-const token = 'access_token';
+const token = import.meta.env.VITE_TOKEN;
 
 export const AuthProviderContext = ({
   children,

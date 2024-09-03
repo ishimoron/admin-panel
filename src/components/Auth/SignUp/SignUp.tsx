@@ -1,7 +1,7 @@
 import { useRouter } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 
-import { Routes_E } from '../../enums/Routes_E';
+import { Routes_E } from '../../../enums/Routes_E';
 import { useAuth } from '../auth';
 
 const SignUp = () => {
