@@ -1,15 +1,12 @@
-import { useNavigate, useRouter } from '@tanstack/react-router';
 import { useEffect } from 'react';
 
 import { useAuth } from '../Auth/auth';
-import Sidebar from '../Sidebar/Sidebar';
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import { useAuthCheck } from '../hooks/useAuthCheck';
 import styles from './style.module.scss';
 
 const Dashboard = () => {
   const auth = useAuth();
-  const navigate = useNavigate();
-  const router = useRouter();
   const { isUserAuthenticated } = useAuthCheck();
 
   useEffect(() => {
@@ -20,19 +17,16 @@ const Dashboard = () => {
     return;
   }
 
-  const logOut = () => {
-    auth.logout().then(() => {
-      router.invalidate().finally(() => {
-        navigate({ to: '/' });
-      });
-    });
-  };
-
   return (
     <div className={styles.dashboardContainer}>
-      <Sidebar />
+<<<<<<< HEAD
+      <Breadcrumbs title="Dashboard" route="dashboard">
+        <div> Welcome: {auth.user?.username}!</div>
+      </Breadcrumbs>
+=======
+      <Breadcrumbs title="Dashboard" route="dashboard" />
       <div> Welcome: {auth.user?.username}!</div>
-      <button onClick={logOut}>Logout</button>
+>>>>>>> 7928efc9b72923147c5ed189d8d440350aa9f663
     </div>
   );
 };

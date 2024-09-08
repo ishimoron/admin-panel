@@ -17,5 +17,5 @@ export interface IAuthContext {
   getToken: () => string | null;
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (username: string, email: string, password: string) => Promise<void>;
-  logout: () => Promise<void>;
+  logout: () => void;
 }

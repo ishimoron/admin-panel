@@ -85,7 +85,7 @@ export const AuthProviderContext = ({
     [],
   );
 
-  const logout = useCallback(async () => {
+  const logout = useCallback(() => {
     setStoreToken(null);
     setUser(null);
     setError([]);
@@ -135,4 +135,10 @@ export const AuthProviderContext = ({
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = (): IAuthContext => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProviderContext');
+  }
+  return context;
+};

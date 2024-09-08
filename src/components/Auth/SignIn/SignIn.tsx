@@ -39,7 +39,6 @@ const SignIn = () => {
       <div className={styles.signInContainer}>
         <div>
           <h1>Sign In</h1>
-
           <form onSubmit={handleFormSubmit}>
             <span>
               {auth?.error && (

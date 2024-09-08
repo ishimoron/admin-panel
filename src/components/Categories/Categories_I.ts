@@ -5,6 +5,14 @@ export interface Categories_I {
   description: string;
 }
 
-export interface CategoryNode extends Categories_I {
-  subcategories: Categories_I[];
+export interface TreeViewCategories_I {
+  id: string;
+  parent_id: null | number;
+  label: string;
+  description: string;
+  children: TreeViewCategories_I[];
+}
+
+export interface CategoryNode extends TreeViewCategories_I {
+  children: TreeViewCategories_I[];
 }

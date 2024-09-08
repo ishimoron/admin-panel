@@ -15,6 +15,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
+import { Route as AuthProductsImport } from './routes/_auth.products'
 import { Route as AuthDashboardImport } from './routes/_auth.dashboard'
 import { Route as AuthCategoriesImport } from './routes/_auth.categories'
 
@@ -43,6 +44,11 @@ const AuthRoute = AuthImport.update({
 const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const AuthProductsRoute = AuthProductsImport.update({
+  path: '/products',
+  getParentRoute: () => AuthRoute,
 } as any)
 
 const AuthDashboardRoute = AuthDashboardImport.update({
@@ -101,6 +107,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthDashboardImport
       parentRoute: typeof AuthImport
     }
+    '/_auth/products': {
+      id: '/_auth/products'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof AuthProductsImport
+      parentRoute: typeof AuthImport
+    }
   }
 }
 
@@ -108,7 +121,11 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
-  AuthRoute: AuthRoute.addChildren({ AuthCategoriesRoute, AuthDashboardRoute }),
+  AuthRoute: AuthRoute.addChildren({
+    AuthCategoriesRoute,
+    AuthDashboardRoute,
+    AuthProductsRoute,
+  }),
   SigninLazyRoute,
   SignupLazyRoute,
 })
@@ -134,7 +151,8 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "_auth.tsx",
       "children": [
         "/_auth/categories",
-        "/_auth/dashboard"
+        "/_auth/dashboard",
+        "/_auth/products"
       ]
     },
     "/signin": {
@@ -149,6 +167,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/_auth/dashboard": {
       "filePath": "_auth.dashboard.tsx",
+      "parent": "/_auth"
+    },
+    "/_auth/products": {
+      "filePath": "_auth.products.tsx",
       "parent": "/_auth"
     }
   }
