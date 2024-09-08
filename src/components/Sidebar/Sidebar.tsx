@@ -29,10 +29,7 @@ import { useState } from 'react';
 
 import { Routes_E } from '../../enums/Routes_E';
 import { useAuth } from '../Auth/auth';
-<<<<<<< HEAD
 import ColorSchemeToggle from '../ColorSchemeToggle/ColorSchemeToggle';
-=======
->>>>>>> 7928efc9b72923147c5ed189d8d440350aa9f663
 import { closeSidebar } from '../utils/sidebarUtils';
 
 // import { closeSidebar } from '../utils';
@@ -141,11 +138,7 @@ const Sidebar = () => {
           <BrightnessAutoRoundedIcon />
         </IconButton>
         <Typography level="title-lg">Logo here</Typography>
-<<<<<<< HEAD
         <ColorSchemeToggle sx={{ ml: 'auto' }} />
-=======
-        {/* <ColorSchemeToggle sx={{ ml: 'auto' }} /> */}
->>>>>>> 7928efc9b72923147c5ed189d8d440350aa9f663
       </Box>
       <Input
         size="sm"

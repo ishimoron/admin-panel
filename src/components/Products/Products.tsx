@@ -11,13 +11,9 @@ const Products = () => {
   }, []);
   return (
     <div>
-<<<<<<< HEAD
       <Breadcrumbs title="Products" route="products">
         123
       </Breadcrumbs>
-=======
-      <Breadcrumbs title="Products" />
->>>>>>> 7928efc9b72923147c5ed189d8d440350aa9f663
     </div>
   );
 };

@@ -19,14 +19,9 @@ const Dashboard = () => {
 
   return (
     <div className={styles.dashboardContainer}>
-<<<<<<< HEAD
       <Breadcrumbs title="Dashboard" route="dashboard">
         <div> Welcome: {auth.user?.username}!</div>
       </Breadcrumbs>
-=======
-      <Breadcrumbs title="Dashboard" route="dashboard" />
-      <div> Welcome: {auth.user?.username}!</div>
->>>>>>> 7928efc9b72923147c5ed189d8d440350aa9f663
     </div>
   );
 };

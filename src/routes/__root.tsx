@@ -28,16 +28,11 @@ function RootComponent() {
     location.pathname === '/signin' || location.pathname === 'signup';
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
-<<<<<<< HEAD
       <CssVarsProvider disableTransitionOnChange>
         <CssBaseline />
         {!isAuthPage && <Sidebar />}
         <Header />
       </CssVarsProvider>
-=======
-      {!isAuthPage && <Sidebar />}
-      <Header />
->>>>>>> 7928efc9b72923147c5ed189d8d440350aa9f663
       <div style={{ flexGrow: 1 }}>
         <Outlet />
       </div>

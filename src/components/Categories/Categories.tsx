@@ -1,12 +1,7 @@
-<<<<<<< HEAD
 import { RichTreeView } from '@mui/x-tree-view';
 import { useEffect, useState } from 'react';
 
 import { apiGetCategories } from '../../api/category.api';
-=======
-import { useEffect, useState } from 'react';
-
->>>>>>> 7928efc9b72923147c5ed189d8d440350aa9f663
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import { useAuthCheck } from '../hooks/useAuthCheck';
 import {
@@ -26,10 +21,13 @@ const Categories = () => {
     isUserAuthenticated();
   }, []);
 
-  // useEffect(() => {
-  //   apiGetCategories().then((categories) => setCategories(categories));
-  //   buildCategoryTree();
-  // }, []);
+  useEffect(() => {
+    apiGetCategories().then((categories) => setCategories(categories));
+  }, []);
+
+  useEffect(() => {
+    buildCategoryTree();
+  }, [categories]);
 
   const buildCategoryTree = () => {
     const categoryMap: { [key: number]: CategoryNode } = {};
@@ -100,13 +98,9 @@ const Categories = () => {
   // console.log(categoriesTree);
   return (
     <>
-<<<<<<< HEAD
       <Breadcrumbs title="Categories" route="categories">
         <RichTreeView items={categoriesTree} />
       </Breadcrumbs>
-=======
-      <Breadcrumbs title="Categories" />
->>>>>>> 7928efc9b72923147c5ed189d8d440350aa9f663
     </>
   );
 };
