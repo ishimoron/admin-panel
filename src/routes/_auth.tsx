@@ -1,12 +1,12 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
-import { Routes_E } from '../enums/Routes_E';
+import { Routes_E } from '../app/models/Routes_E';
+import { getToken } from '../auth/utils/authUtils';
 
 export const Route = createFileRoute('/_auth')({
-  beforeLoad: ({ context }) => {
-    const { auth } = context;
-    if (auth.loading) return;
-    if (!context.auth.isAuthenticated) {
+  beforeLoad: async () => {
+    const token = getToken();
+    if (!token) {
       throw redirect({
         to: Routes_E.SIGN_IN,
       });

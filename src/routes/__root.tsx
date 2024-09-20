@@ -9,9 +9,9 @@ import {
 } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 
-import { IAuthContext } from '../components/Auth/Auth_I';
-import Header from '../components/Header/Header';
-import Sidebar from '../components/Sidebar/Sidebar';
+import Header from '../app/components/Header/Header';
+import Sidebar from '../app/components/Sidebar/Sidebar';
+import { IAuthContext } from '../auth/models/Auth_I';
 
 export interface IRouterContext {
   auth: IAuthContext;
@@ -31,7 +31,7 @@ function RootComponent() {
       <CssVarsProvider disableTransitionOnChange>
         <CssBaseline />
         {!isAuthPage && <Sidebar />}
-        <Header />
+        {!isAuthPage && <Header />}
       </CssVarsProvider>
       <div style={{ flexGrow: 1 }}>
         <Outlet />

@@ -4,7 +4,7 @@ import { PrimeReactProvider } from 'primereact/api';
 import ReactDOM from 'react-dom/client';
 
 import App from './App';
-import { AuthProviderContext, useAuth } from './components/Auth/auth';
+import { AuthProviderContext, useAuth } from './auth/auth';
 import { routeTree } from './routeTree.gen';
 
 const queryClient = new QueryClient();

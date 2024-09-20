@@ -1,10 +1,14 @@
-import 'primeicons/primeicons.css';
-import 'primereact/resources/primereact.min.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './App.css';
 
 const App = () => {
-  return <></>;
+  return (
+    <>
+      <ToastContainer />
+    </>
+  );
 };
 
 export default App;
