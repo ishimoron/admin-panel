@@ -90,6 +90,7 @@ export const apiCreateIconPath = async ({
 
     return await res.json();
   } catch (error) {
+    console.error(error);
     if (logout) logout();
     return {
       message: 'Failed to create iconPath',
@@ -136,6 +137,8 @@ export const apiCreateNewCategory = async ({
 
     return await res.json();
   } catch (error) {
+    console.error(error);
+
     if (logout) logout();
     return {
       error: 'Error',
@@ -184,6 +187,7 @@ export const apiCreateCategoryFromParentId = async ({
 
     return await res.json();
   } catch (error) {
+    console.error(error);
     if (logout) logout();
     return {
       error: 'Error',
@@ -271,6 +275,7 @@ export const apiUpdateCategory = async ({
 
     return await res.json();
   } catch (error) {
+    console.error(error);
     if (logout) logout();
     return {
       error: 'Error',

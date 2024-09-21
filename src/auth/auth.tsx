@@ -133,7 +133,6 @@ export const AuthProviderContext = ({
       logout();
     } finally {
       setLoading(false);
-      return;
     }
   }, [logout]);
 

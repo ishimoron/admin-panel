@@ -25,6 +25,7 @@ import {
   Ref,
   SyntheticEvent,
   forwardRef,
+  useCallback,
   useEffect,
   useState,
 } from 'react';
@@ -97,13 +98,16 @@ const TreeView: FC<TreeViewProps> = ({
     },
   });
 
-  const handleCategoryDelete = async (id: number) => {
-    try {
-      await mutationDelete.mutateAsync(id);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const handleCategoryDelete = useCallback(
+    async (id: number) => {
+      try {
+        await mutationDelete.mutateAsync(id);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [mutationDelete],
+  );
 
   const handleCategoryUpdate = async (
     id: number,
@@ -172,7 +176,12 @@ const TreeView: FC<TreeViewProps> = ({
       handleCategoryDelete(categoryToDelete);
       setIsRejectionConfirmed(false);
     }
-  }, [isRejectionConfirmed, categoryToDelete]);
+  }, [
+    isRejectionConfirmed,
+    categoryToDelete,
+    setIsRejectionConfirmed,
+    handleCategoryDelete,
+  ]);
 
   interface CustomLabelProps extends UseTreeItem2LabelSlotOwnProps {
     editable: boolean;
@@ -182,6 +191,7 @@ const TreeView: FC<TreeViewProps> = ({
   }
 
   function CustomLabel({
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     editing,
     editable,
     children,

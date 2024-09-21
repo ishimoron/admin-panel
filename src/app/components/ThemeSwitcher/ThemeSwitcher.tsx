@@ -28,9 +28,9 @@ const ThemeSwitcher = () => {
     localStorage.setItem('theme', theme);
   };
 
-  const getTheme = () => {
-    localStorage.getItem('theme');
-  };
+  // const getTheme = () => {
+  //   localStorage.getItem('theme');
+  // };
 
   return (
     <div>

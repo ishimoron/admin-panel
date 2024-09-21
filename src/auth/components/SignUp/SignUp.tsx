@@ -32,7 +32,7 @@ const SignUp = () => {
     if (auth?.isAuthenticated) {
       router.navigate({ to: Routes_E.DASHBOARD });
     }
-  }, [auth?.loading, auth?.isAuthenticated]);
+  }, [auth?.loading, auth?.isAuthenticated, router]);
   return (
     <div>
       <h1>Sign up</h1>

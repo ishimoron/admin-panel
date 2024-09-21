@@ -1,4 +1,4 @@
-import { Box } from '@mui/joy';
+import { Box, Typography } from '@mui/joy';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
@@ -41,10 +41,12 @@ const Categories = () => {
   }, [categories]);
 
   if (isLoading) return <Loading />;
-
   return (
     <>
       <Breadcrumbs title="Categories" route="categories">
+        {categories?.length === 0 && (
+          <Typography>Please add your first category</Typography>
+        )}
         <TreeView
           categoriesTree={categoriesTree}
           isRejectionConfirmed={isRejectionConfirmed}

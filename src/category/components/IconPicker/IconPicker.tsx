@@ -31,7 +31,6 @@ interface IconPickerProps {
 }
 
 const IconPicker: FC<IconPickerProps> = ({
-  fileIcon,
   chosenIcon,
   setChosenIcon,
   isChosenIcon,

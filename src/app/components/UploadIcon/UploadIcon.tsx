@@ -39,8 +39,8 @@ const UploadIcon: FC<UploadIconProps> = ({
     if (files && files.length > 0) {
       setFileIcon(files[0]);
     }
-    setIsChosenIconParent && setIsChosenIconParent(true);
-    setIsChosenIcon && setIsChosenIcon(true);
+    setIsChosenIconParent?.(true);
+    setIsChosenIcon?.(true);
   };
 
   useEffect(() => {
@@ -56,7 +56,8 @@ const UploadIcon: FC<UploadIconProps> = ({
       }
     };
     checkFileType();
-  }, [fileIcon]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fileIcon, setFileIcon]);
 
   return (
     <Box>
@@ -98,8 +99,8 @@ const UploadIcon: FC<UploadIconProps> = ({
             size="sm"
             onClick={() => {
               setFileIcon(null);
-              setIsChosenIconParent && setIsChosenIconParent(false);
-              setIsChosenIcon && setIsChosenIcon(false);
+              setIsChosenIconParent?.(false);
+              setIsChosenIcon?.(false);
             }}
           >
             <CloseRoundedIcon />

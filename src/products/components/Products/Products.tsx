@@ -1,7 +1,4 @@
-import { useEffect } from 'react';
-
 import Breadcrumbs from '../../../app/components/Breadcrumbs/Breadcrumbs';
-import { useAuthCheck } from '../../../auth/hooks/useAuthCheck';
 
 const Products = () => {
   // const { isUserAuthenticated } = useAuthCheck();
