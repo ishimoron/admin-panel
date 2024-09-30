@@ -1,4 +1,5 @@
 import Breadcrumbs from '../../../app/components/Breadcrumbs/Breadcrumbs';
+import ProductsTable from '../ProductsTable/ProductsTable';
 
 const Products = () => {
   // const { isUserAuthenticated } = useAuthCheck();
@@ -9,7 +10,7 @@ const Products = () => {
   return (
     <div>
       <Breadcrumbs title="Products" route="products">
-        123
+        <ProductsTable />
       </Breadcrumbs>
     </div>
   );
