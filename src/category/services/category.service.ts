@@ -10,30 +10,28 @@ import {
 } from '../models/CategoriesApi_I';
 import { Categories_I } from '../models/Categories_I';
 
+let access_token = getToken();
 const URL = import.meta.env.VITE_API_URL;
+const headers = {
+  Authorization: `Bearer ${access_token}`,
+};
 
 export const apiGetCategories = async ({
   refreshTokenHandler,
   logout,
 }: Partial<IAuthContext>): Promise<Categories_I[]> => {
-  let access_token = getToken();
   try {
     const res = await fetch(`${URL}/category`, {
       method: API_E.GET,
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
+      ...headers,
     });
 
     if (res.status === 401) {
       if (refreshTokenHandler) await refreshTokenHandler();
-      access_token = getToken();
 
       const retryRes = await fetch(`${URL}/category`, {
         method: API_E.GET,
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
+        ...headers,
       });
 
       if (!retryRes.ok)
@@ -58,7 +56,6 @@ export const apiCreateIconPath = async ({
   message: string;
   fileUrl?: string;
 }> => {
-  let access_token = getToken();
   const localUrl = `${URL}/icons/upload`;
   const formData = new FormData();
   if (fileIcon) {
@@ -67,22 +64,17 @@ export const apiCreateIconPath = async ({
   try {
     const res = await fetch(localUrl, {
       method: API_E.POST,
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
       body: formData,
+      ...headers,
     });
 
     if (res.status === 401) {
       if (refreshTokenHandler) await refreshTokenHandler();
-      access_token = getToken();
 
       const retryRes = await fetch(localUrl, {
         method: API_E.POST,
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
         body: formData,
+        ...headers,
       });
 
       return await retryRes.json();
@@ -104,7 +96,6 @@ export const apiCreateNewCategory = async ({
   newCategory,
   fileUrl,
 }: Partial<apiCreateNewCategoryProps>) => {
-  let access_token = getToken();
   const localUrl = `${URL}/category/create`;
   const newCategoryWithFileUrl = fileUrl
     ? { ...newCategory, iconPath: fileUrl }
@@ -112,11 +103,8 @@ export const apiCreateNewCategory = async ({
   try {
     const res = await fetch(localUrl, {
       method: API_E.POST,
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${access_token}`,
-      },
       body: JSON.stringify(newCategoryWithFileUrl),
+      ...headers,
     });
 
     if (res.status === 401) {
@@ -201,14 +189,11 @@ export const apiDeleteCategory = async ({
   logout,
   id,
 }: Partial<apiDeleteCategoryProps>): Promise<void> => {
-  let access_token = getToken();
   const localUrl = `${URL}/category/${id}`;
   try {
     const res = await fetch(localUrl, {
       method: API_E.DELETE,
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
+      ...headers,
     });
 
     if (res.status === 401) {
@@ -217,9 +202,7 @@ export const apiDeleteCategory = async ({
 
       const retryRes = await fetch(localUrl, {
         method: API_E.DELETE,
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
+        ...headers,
       });
 
       if (!retryRes.ok) throw new Error('Error deleting category after retry');

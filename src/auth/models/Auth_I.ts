@@ -1,10 +1,10 @@
-import { RoleEnum } from '../../auth/models/Role_Enum';
+import { ROLE_ENUM } from '../../auth/models/Role_Enum';
 
 export interface AuthUser {
   id: number;
   email: string;
   username: string;
-  role: RoleEnum;
+  role: ROLE_ENUM;
   createdAt: string;
   access_token: string;
 }
